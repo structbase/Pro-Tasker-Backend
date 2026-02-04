@@ -1,7 +1,13 @@
+const mongoose = require("mongoose");
 const Project = require("../../models/Project");
 
 async function getProjectById(req, res) {
     try {
+        if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+            return res
+                .status(404)
+                .json({ message: "No project found or not authorized." });
+        }
         /**
          * Fetch a single product by ID that belongs to the logged-in user
          */

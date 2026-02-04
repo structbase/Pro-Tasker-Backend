@@ -1,7 +1,13 @@
+const mongoose = require("mongoose");
 const Project = require("../../models/Project");
 
 async function deleteProject(req, res) {
     try {
+        if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+            return res.status(404).json({
+                message: "No project found",
+            });
+        }
         /**
          *  Find the project by the ID provided in the URL parameters
          */

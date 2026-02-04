@@ -1,8 +1,14 @@
+const mongoose = require("mongoose");
 const Project = require("../../models/Project");
 
 
 async function updateProject(req, res) {
     try {
+        if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+            return res
+                .status(404)
+                .json({ message: "No project found or not authorized." });
+        }
         /**
          * Find and update project ONLY if it belongs to the logged-in user
          */

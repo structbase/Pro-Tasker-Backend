@@ -1,8 +1,12 @@
+const mongoose = require("mongoose");
 const Task = require("../../models/Task");
 const Project = require("../../models/Project");
 
 async function getTaskById(req, res) {
     try {
+        if (!mongoose.Types.ObjectId.isValid(req.params.taskId)) {
+            return res.status(404).json({ message: "Task not found." });
+        }
         /**
          * Fetch a single product by ID that belongs to the logged-in user
          */

@@ -1,8 +1,14 @@
+const mongoose = require("mongoose");
 const Task = require("../../models/Task");
 const Project = require("../../models/Project");
 
 async function updateTask(req, res) {
     try {
+        if (!mongoose.Types.ObjectId.isValid(req.params.taskId)) {
+            return res.status(404).json({
+                message: "Task not found.",
+            });
+        }
         /**
          * Find and update task ONLY if it belongs to the logged-in user
          */

@@ -1,8 +1,14 @@
+const mongoose = require("mongoose");
 const Task = require("../../models/Task");
 const Project = require("../../models/Project");
 
 async function getTask(req, res) {
     try {
+        if (!mongoose.Types.ObjectId.isValid(req.params.projectId)) {
+            return res.status(404).json({
+                message: "Project not found.",
+            });
+        }
         /**
          * Find the parent project
          */

@@ -63,6 +63,7 @@ MONGO_URI=your_mongodb_connection_string
 PORT=3001
 JWT_SECRET=your_jwt_secret
 SALTING_ROUNDS=10
+CLIENT_ORIGIN=http://localhost:3001
 ```
 
 ## ▶️ Run Locally

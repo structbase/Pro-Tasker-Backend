@@ -17,7 +17,7 @@ const userSchema = new Schema(
             type: String,
             trim: true,
             unique: true,
-            sparse: true, // allows OAuth users without username
+            sparse: true, 
         },
 
         email: {
@@ -27,18 +27,10 @@ const userSchema = new Schema(
             match: [/.+@.+\..+/, "Must use a valid email address"],
         },
 
-        // LOCAL AUTH (optional)
         password: {
             type: String,
             minlength: 8,
             select: false,
-        },
-
-        // OAUTH (GitHub)
-        githubId: {
-            type: String,
-            unique: true,
-            sparse: true, // allows multiple users with no githubId
         },
     },
     {
